@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import MovieComponent from './components/MovieComponent/MovieComponent';
 import { useState } from 'react'; 
 import axios from 'axios';
+import { useRef } from "react"
 
 const API_KEY="b32581e6";
 const Container = styled.div`
@@ -79,8 +80,10 @@ function App() {
   const [search,updateSearch]=useState();
   const [timeoutId,updateTimeoutId]=useState();
   const [movieList,updateMovieList]=useState([]);
-
+  const inputRef=useRef(null);
   const fetchData= async (searchString)=>{
+    // searchString=searchString+" ";
+    
     const response=await axios.get(`https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`,);
     console.log(response);
     updateMovieList(response.data.Search);
@@ -88,7 +91,10 @@ function App() {
 
   const onChange=(event)=>{
     clearTimeout(timeoutId);
+    // inputRef.current.value
     updateSearch(event.target.value);
+    console.log(search)
+    // fetchData(search)
     const timeout=setTimeout(()=>fetchData(search),500);
     updateTimeoutId(timeout);
   }
@@ -103,9 +109,9 @@ function App() {
         </AppName>
         <SearchBox>
           <SearchIcon src="/images/search-icon.svg"></SearchIcon>
-          <SearchInput placeholder="Search a movie"
-          onChange={onChange}
+          <input type="text" placeholder="Search a movie"
           value={search}/>
+          <button onClick={onChange}>click</button>
         </SearchBox>
       </Header>
       <MovieListContainer>
