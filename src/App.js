@@ -5,6 +5,7 @@ import MovieComponent from './components/MovieComponent/MovieComponent';
 import { useState } from 'react'; 
 import axios from 'axios';
 import { useRef } from "react"
+import MovieInfo from './components/MovieInfo/MovieInfo';
 
 const API_KEY="b32581e6";
 const Container = styled.div`
@@ -80,6 +81,8 @@ function App() {
   const [search,updateSearch]=useState();
   const [timeoutId,updateTimeoutId]=useState();
   const [movieList,updateMovieList]=useState([]);
+  const [selectedMovie, onMovieSelect] = useState();
+
   const inputRef=useRef(null);
   const fetchData= async (searchString)=>{
     // searchString=searchString+" ";
@@ -92,10 +95,11 @@ function App() {
   const onChange=(event)=>{
     clearTimeout(timeoutId);
     // inputRef.current.value
-    updateSearch(event.target.value);
+    const s=event.target.value
+    updateSearch(s);
     console.log(search)
     // fetchData(search)
-    const timeout=setTimeout(()=>fetchData(search),500);
+    const timeout=setTimeout(()=>fetchData(s),500);
     updateTimeoutId(timeout);
   }
 
@@ -109,14 +113,16 @@ function App() {
         </AppName>
         <SearchBox>
           <SearchIcon src="/images/search-icon.svg"></SearchIcon>
-          <input type="text" placeholder="Search a movie"
+          <SearchInput type="text" placeholder="Search a movie"
+          onChange={onChange}
           value={search}/>
-          <button onClick={onChange}>click</button>
+          {/* <button >click</button> */}
         </SearchBox>
       </Header>
+      {selectedMovie && <MovieInfo selectedMovie={selectedMovie} onMovieSelect={onMovieSelect}/>}
       <MovieListContainer>
         {movieList?.length? movieList.map((movie,index)=>
-          <MovieComponent key={index} movie={movie}/>
+          <MovieComponent key={index} movie={movie} onMovieSelect={onMovieSelect}/>
         ): "No Movie Search"
       }
       </MovieListContainer>
