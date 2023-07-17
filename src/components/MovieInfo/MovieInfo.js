@@ -61,7 +61,8 @@ const Close = styled.span`
 const API_KEY="b32581e6";
 // https://www.omdbapi.com/?i={MOVIE_ID}&apikey={API_KEY}
 function MovieInfo(props) {
-  const [Info,setInfo]=useState();
+  const [Info,setInfo]=useState([]);
+  // const [data, setData] = useState([]);
   const {selectedMovie}=props;
   useEffect(()=>{axios.get(`https://www.omdbapi.com/?i=${selectedMovie}&apikey=${API_KEY}`)
   .then((response)=>{setInfo(response.data)});
@@ -77,13 +78,10 @@ function MovieInfo(props) {
             <MovieName>
 
             </MovieName>
-            {/* <div>
-            {
-                Object.entries(Info).map(([key, val]) => 
-                    <h2 key={key}>{key}: {val}</h2>
-                )
+            for (const [key, value] of Object.entries(Info)) {
+              <MovieInfoC>{`${key}: ${value}`}</MovieInfoC>
             }
-        </div> */}
+
           </InfoColumn>
           <Close onClick={()=>props.onMovieSelect()}>X</Close>
       </>:"Loading.."}
