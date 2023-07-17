@@ -37,7 +37,7 @@ const MovieName = styled.span`
 const MovieInfoC = styled.span`
   font-size: 16px;
   font-weight: 500;
-  color: black;
+  color: white;
   overflow: hidden;
   margin: 4px 0;
   text-transform: capitalize;
@@ -75,12 +75,39 @@ function MovieInfo(props) {
         <CoverImage src={Info?.Poster} />
 
           <InfoColumn>
-            <MovieName>
-
+          <MovieName>
+              {MovieInfoC?.Type}: <span>{Info?.Title}</span>
             </MovieName>
-            for (const [key, value] of Object.entries(Info)) {
-              <MovieInfoC>{`${key}: ${value}`}</MovieInfoC>
-            }
+            <MovieInfoC>
+              IMDB Rating: <span>{Info?.imdbRating}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Year: <span>{Info?.Year}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Language: <span>{Info?.Language}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Rated: <span>{Info?.Rated}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Released: <span>{Info?.Released}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Runtime: <span>{Info?.Runtime}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Genre: <span>{Info?.Genre}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Director: <span>{Info?.Director}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Actors: <span>{Info?.Actors}</span>
+            </MovieInfoC>
+            <MovieInfoC>
+              Plot: <span>{Info?.Plot}</span>
+            </MovieInfoC>
 
           </InfoColumn>
           <Close onClick={()=>props.onMovieSelect()}>X</Close>
