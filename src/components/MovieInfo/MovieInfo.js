@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -57,11 +58,37 @@ const Close = styled.span`
   cursor: pointer;
   opacity: 0.8;
 `;
+const API_KEY="b32581e6";
+// https://www.omdbapi.com/?i={MOVIE_ID}&apikey={API_KEY}
+function MovieInfo(props) {
+  const [Info,setInfo]=useState();
+  const {selectedMovie}=props;
+  useEffect(()=>{axios.get(`https://www.omdbapi.com/?i=${selectedMovie}&apikey=${API_KEY}`)
+  .then((response)=>{setInfo(response.data)});
+  },[selectedMovie]);
 
-
-function MovieInfo() {
+  console.log(Info)
   return (
-    <div>MovieInfo</div>
+    <Container>
+      {Info?<>
+        <CoverImage src={Info?.Poster} />
+
+          <InfoColumn>
+            <MovieName>
+
+            </MovieName>
+            {/* <div>
+            {
+                Object.entries(Info).map(([key, val]) => 
+                    <h2 key={key}>{key}: {val}</h2>
+                )
+            }
+        </div> */}
+          </InfoColumn>
+          <Close onClick={()=>props.onMovieSelect()}>X</Close>
+      </>:"Loading.."}
+     
+    </Container>
   )
 }
 
