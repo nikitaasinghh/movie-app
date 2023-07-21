@@ -96,8 +96,8 @@ function App() {
 
       console.log(response?.data?.Response)
 
-    if(response?.data?.Response === "False" && searchGenre){
-      alert("Search String too short")
+    if(response?.data?.Response === "False"){
+      if(searchGenre) alert("Search String too short")
       return
     }
       
@@ -106,7 +106,7 @@ function App() {
 
     const responseArraySearch = await responseArray?.Search;
     
-    const movieIds = await responseArraySearch.map((movie) => movie.imdbID);
+    const movieIds = await responseArraySearch?.map((movie) => movie.imdbID);
     const movieDataRequests = await movieIds.map((id) =>
       axios.get(`https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`)
     );
