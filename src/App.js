@@ -85,7 +85,7 @@ function App() {
 
   const fetchData = async (searchString, searchGenre) => {
 
-    if(!searchString){
+    if(!searchString && searchGenre){
       alert("Please enter a movie title")
       return
     }
@@ -96,7 +96,7 @@ function App() {
 
       console.log(response?.data?.Response)
 
-    if(response?.data?.Response === "False"){
+    if(response?.data?.Response === "False" && searchGenre){
       alert("Search String too short")
       return
     }
@@ -132,7 +132,7 @@ function App() {
     const s = event.target.value;
     updateSearchTitle(s);
     console.log(searchTitle);
-    const timeout = setTimeout(() => fetchData(s, searchGenre), 500);
+    const timeout = setTimeout(() => fetchData(s, searchGenre), 1000);
     updateTimeoutId(timeout);
   };
 
@@ -141,7 +141,7 @@ function App() {
     const g = event.target.value;
     updateSearchGenre(g);
     console.log(searchGenre);
-    const timeout = setTimeout(() => fetchData(searchTitle, g), 500);
+    const timeout = setTimeout(() => fetchData(searchTitle, g), 1500);
     updateTimeoutId(timeout);
   };
 
