@@ -39,7 +39,7 @@ const MovieInfo = styled.span`
 `;
 
 function MovieComponent(props) {
-    const {Title,Year,imdbID,Type,Poster}=props.movie;
+    const {Title,Year,Rated,Released,Runtime,Genre,Director,Writer,Actors,Plot,Language,Country,Awards,Poster,Ratings,Metascore,imdbRating,imdbVotes,imdbID,Type,DVD,BoxOffice,Production,Website,Response}=props.movie;
   return (
     <MovieContainer onClick={()=>{
       props.onMovieSelect(imdbID);
