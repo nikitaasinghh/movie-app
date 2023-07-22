@@ -5,76 +5,11 @@ import MovieComponent from "./components/MovieComponent/MovieComponent";
 import { useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import MovieInfo from "./components/MovieInfo/MovieInfo";
 
 const API_KEY = "b32581e6";
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
-const Header = styled.div`
-  background-color: black;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px;
-  font-size: 25px;
-  font-weight: bold;
-  box-shadow: 0 3px 6px 0 #555;
-`;
-
-const AppName = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const MovieImage = styled.img`
-  width: 100px;
-  height: 70px;
-  margin: 5px;
-`;
-
-const SearchBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 10px 10px;
-  border-radius: 6px;
-  width: 25%;
-  background-color: white;
-`;
-
-const SearchIcon = styled.img`
-  width: 32px;
-  height: 32px;
-`;
-
-const SearchInput = styled.input`
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  margin-left: 15px;
-`;
-
-const MovieListContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 30px;
-  gap: 25px;
-  justify-content: space-evenly;
-`;
-const Placeholder = styled.img`
-  width: 120px;
-  height: 120px;
-  margin: 150px;
-  opacity: 50%;
-`;
 
 function App() {
   const [searchTitle, updateSearchTitle] = useState();
@@ -89,6 +24,10 @@ function App() {
       alert("Please enter a movie title")
       return
     }
+    if(!searchString && !searchGenre){
+      updateMovieList([]);
+    }
+
 
     const response = await axios.get(
       `https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`
@@ -145,38 +84,47 @@ function App() {
     updateTimeoutId(timeout);
   };
 
+  const onClick=()=>{
+    updateMovieList([]);
+    updateSearchTitle("");
+    updateSearchGenre("");
+  }
   return (
-    <Container>
-      <Header>
-        <AppName>
-          <MovieImage src="/images/redLogo.png" />
+    <div className="Container">
+      <div className="Header">
+        <div className="AppName" onClick={onClick}>
+          <img className="MovieImage" src="/images/redLogo.png" />
           React Movie App
-        </AppName>
-        <SearchBox>
-          <SearchIcon src="/images/search-icon.svg"></SearchIcon>
-          <SearchInput
+        </div>
+
+        <div className="SearchBox">
+          <img className="SearchIcon" src="/images/search-icon.svg"></img>
+          <div className="SearchBar">
+
+          <input className="SearchInput"
             type="text"
             placeholder="Movie Title"
             onChange={onChangeTitle}
             value={searchTitle}
           />
           {/* <button >click</button> */}
-          <SearchInput
+          <input className="SearchInputGenre"
             type="text"
             placeholder="Genre (Optional)"
             onChange={onChangeGenre}
             value={searchGenre}
           />
           {/* <button >click</button> */}
-        </SearchBox>
-      </Header>
+          </div>
+        </div>
+      </div>
       {selectedMovie && (
         <MovieInfo
           selectedMovie={selectedMovie}
           onMovieSelect={onMovieSelect}
         />
       )}
-      <MovieListContainer>
+      <div className="MovieListContainer">
         {movieList?.length
           ? movieList?.map((movie, index) => (
               <MovieComponent
@@ -186,8 +134,8 @@ function App() {
               />
             ))
           : "No Movie Search"}
-      </MovieListContainer>
-    </Container>
+      </div>
+    </div>
   );
 }
 

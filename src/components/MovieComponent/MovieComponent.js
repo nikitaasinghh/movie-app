@@ -1,56 +1,25 @@
 import React from 'react'
-import  styled  from 'styled-components'
-
-const MovieContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  width: 280px;
-  box-shadow: 0 3px 10px 0 #ff0000;
-  cursor: pointer;
-//   background-color:white;
-`;
-const CoverImage = styled.img`
-  object-fit: cover;
-  height: 362px;
-`;
-const MovieName = styled.span`
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  margin: 15px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-const InfoColumn = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-const MovieInfo = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  white-space: nowrap;
-  overflow: hidden;
-  text-transform: capitalize;
-  text-overflow: ellipsis;
-`;
+import "./MovieComponent.css" 
 
 function MovieComponent(props) {
     const {Title,Year,Rated,Released,Runtime,Genre,Director,Writer,Actors,Plot,Language,Country,Awards,Poster,Ratings,Metascore,imdbRating,imdbVotes,imdbID,Type,DVD,BoxOffice,Production,Website,Response}=props.movie;
   return (
-    <MovieContainer onClick={()=>{
+    <div className="MovieContainer" onClick={()=>{
       props.onMovieSelect(imdbID);
+      // window.scrollTo(0,0);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
     }}>
-        <CoverImage src={Poster}/>
-        <MovieName>{Title}</MovieName>
-        <InfoColumn>
-            <MovieInfo>Year: {Year}</MovieInfo>
-            <MovieInfo>Type: {Type}</MovieInfo>
-        </InfoColumn>
-    </MovieContainer>
+        <img className="CoverImage" src={Poster}/>
+        <span className="MovieName">{Title}</span>
+        <div className="InfoColumn">
+            <span className="MovieInfo">Year: {Year}</span>
+            <span className="MovieInfo">Type: {Type}</span>
+        </div>
+    </div>
   )
 }
 
