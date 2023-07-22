@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieInfo from "./components/MovieInfo/MovieInfo";
+import PopularMovie from "./components/MovieComponent/PopularMovie";
 
 const API_KEY = "b32581e6";
 
@@ -17,6 +18,14 @@ function App() {
   const [timeoutId, updateTimeoutId] = useState();
   const [movieList, updateMovieList] = useState([]);
   const [selectedMovie, onMovieSelect] = useState();
+  const [popularMovie, setPopularMovie] = useState([]);
+ 
+  const fetchPopular = async (searchString) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`,
+    );
+    setPopularMovie(response.data.Search);
+  };
 
   const fetchData = async (searchString, searchGenre) => {
 
@@ -26,7 +35,9 @@ function App() {
     }
     if(!searchString && !searchGenre){
       updateMovieList([]);
+      onMovieSelect();
     }
+
 
 
     const response = await axios.get(
@@ -88,13 +99,14 @@ function App() {
     updateMovieList([]);
     updateSearchTitle("");
     updateSearchGenre("");
+    onMovieSelect();
   }
   return (
     <div className="Container">
       <div className="Header">
         <div className="AppName" onClick={onClick}>
           <img className="MovieImage" src="/images/redLogo.png" />
-          React Movie App
+          NikitaFlix
         </div>
 
         <div className="SearchBox">
@@ -133,7 +145,10 @@ function App() {
                 onMovieSelect={onMovieSelect}
               />
             ))
-          : "No Movie Search"}
+          : 
+          <PopularMovie setPopularMovie={setPopularMovie} popularMovie={popularMovie} movieList={movieList}/>
+        // "No Movie Search"
+        }
       </div>
     </div>
   );

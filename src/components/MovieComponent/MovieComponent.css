@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
 .MovieContainer{ 
   display: flex;
   flex-direction: column;
@@ -5,17 +8,28 @@
   width: 280px;
   box-shadow: 0 3px 10px 0 #ff0000;
   cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  
   /* background-color:white; */
 }
 
+.MovieContainer:hover{
+  transform: scale(1.1);
+  background-color: rgb(6, 10, 44);
+  /* background-color: rgb(6, 42, 44); */
+  color: black;
+  box-shadow: 0 3px 10px 0 white;
+}
 .CoverImage{ 
   object-fit: cover;
   height: 362px;
 }
 
 .MovieName{ 
-  font-size: 18px;
+  font-size: 40px;
   font-weight: 600;
+  /* font-family: 'Satisfy', cursive; */
+  /* font-family: 'Amatic SC', cursive; */
   color: white;
   margin: 15px 0;
   white-space: nowrap;
@@ -29,6 +43,7 @@
   justify-content: space-between;
 }
 
+
 .MovieInfo{
   font-size: 16px;
   font-weight: 500;
@@ -38,3 +53,6 @@
   text-transform: capitalize;
   text-overflow: ellipsis;
 }
+
+
+

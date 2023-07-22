@@ -1,5 +1,12 @@
 import React from 'react'
 import "./MovieComponent.css" 
+import styled from "styled-components";
+
+const InfoColumn = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 function MovieComponent(props) {
     const {Title,Year,Rated,Released,Runtime,Genre,Director,Writer,Actors,Plot,Language,Country,Awards,Poster,Ratings,Metascore,imdbRating,imdbVotes,imdbID,Type,DVD,BoxOffice,Production,Website,Response}=props.movie;
@@ -15,10 +22,10 @@ function MovieComponent(props) {
     }}>
         <img className="CoverImage" src={Poster}/>
         <span className="MovieName">{Title}</span>
-        <div className="InfoColumn">
+        <InfoColumn>
             <span className="MovieInfo">Year: {Year}</span>
             <span className="MovieInfo">Type: {Type}</span>
-        </div>
+        </InfoColumn>
     </div>
   )
 }
