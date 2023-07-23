@@ -1,0 +1,45 @@
+
+.Image{ 
+    margin: auto;
+    height: 362px;
+    display: block;
+    object-fit: cover;
+  padding-bottom: 8%;
+}
+
+.Column{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.Outer{
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    transition: 0.3s all ease-in-out;
+    padding: 1%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+.Outer:hover{
+    box-shadow: 0 3px 10px 0 white;
+    transform: scale(1.1);
+}
+
+.MName{
+    font-size: large;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+.Info{
+    padding-top: 5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

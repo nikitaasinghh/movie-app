@@ -1,74 +1,39 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import styled from "styled-components";
-import "./MovieInfo.css";
+// import React from 'react'
+// import "./PopularMovieInfo.css"
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 20px 30px;
-  justify-content: center;
-  border-bottom: 1px solid lightgray;
-`;
+// function PopularMovieInfo(props) {
+//   return (
+//     <div>
 
-const API_KEY="b32581e6";
-// https://www.omdbapi.com/?i={MOVIE_ID}&apikey={API_KEY}
-function MovieInfo(props) {
-  
-  const [Info,setInfo]=useState([]);
-  const {selectedMovie}=props;
+//     <div className='full'> 
+//        <img className="poster" src={`https://image.tmdb.org/t/p/original${props.movie?props.movie.poster_path:""}`} />
 
-  useEffect(()=>{axios.get(`https://www.omdbapi.com/?i=${selectedMovie}&apikey=${API_KEY}`)
-  .then((response)=>{setInfo(response.data)});
-  },[selectedMovie]);
+//       <div className='fullInfo'>
+//         <span className='name'>
+//           Title : <span>{props.movie.title}</span>
+//         </span>
+//         <span className="detail">
+//           IMDB Rating: <span>{props.movie.vote_average}</span>
+//         </span>
+//         <span className="detail">
+//           Released : <span>{props.movie.release_date}</span>
+//         </span>
+//         <span className="detail">
+//           Language: <span>{props.movie.original_language}</span>
+//         </span>
+//         <span className="detail">
+//           Votes: <span>{props.movie.vote_count}</span>
+//         </span>
+//         <span className="detail">
+//           Popularity :  <span>{props.movie.popularity}</span>
+//         </span>
+//         <span className="detail">
+//           Overview: <span>{props.movie.overview}</span>
+//         </span>
+//       </div>
+//     </div>
+//     </div>
+//   )
+// }
 
-  console.log(Info)
-  return (
-    <Container>
-      {Info?<>
-        <img className='CoverImage' src={Info?.Poster} />
-
-          <div className='InfoColumn'>
-          <span className='MovieName'>
-              {Info?.Type} : <span>{Info?.Title}</span>
-            </span>
-            <span className="MovieInfoC">
-              IMDB Rating: <span>{Info?.imdbRating}</span>
-            </span>
-            <span className="MovieInfoC">
-              Year: <span>{Info?.Year}</span>
-            </span>
-            <span className="MovieInfoC">
-              Language: <span>{Info?.Language}</span>
-            </span>
-            <span className="MovieInfoC">
-              Rated: <span>{Info?.Rated}</span>
-            </span>
-            <span className="MovieInfoC">
-              Released: <span>{Info?.Released}</span>
-            </span>
-            <span className="MovieInfoC">
-              Runtime: <span>{Info?.Runtime}</span>
-            </span>
-            <span className="MovieInfoC">
-              Genre: <span>{Info?.Genre}</span>
-            </span>
-            <span className="MovieInfoC">
-              Director: <span>{Info?.Director}</span>
-            </span>
-            <span className="MovieInfoC">
-              Actors: <span>{Info?.Actors}</span>
-            </span>
-            <span className="MovieInfoC">
-              Plot: <span>{Info?.Plot}</span>
-            </span>
-
-          </div>
-          <span className='Close' onClick={()=>props.onMovieSelect()}>X</span>
-      </>:"Loading.."}
-     
-    </Container>
-  )
-}
-
-export default MovieInfo
+// export default PopularMovieInfo

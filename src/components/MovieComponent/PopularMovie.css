@@ -1,0 +1,29 @@
+.Total{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+.Close1{
+    float: left;
+    transition: 0.3s all ease-in-out;
+    font-size: medium;
+}
+
+.Close1:hover{
+    box-shadow: 0 3px 10px 0 white;
+    transform: scale(1.1);
+}
+
+.Close2{
+    float: right;
+    transition: 0.1s all ease-in-out;
+    font-size: medium;
+}
+
+.Close2:hover{
+    box-shadow: 0 3px 10px 0 white;
+    transform: scale(1.1);
+}
