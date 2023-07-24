@@ -43,6 +43,7 @@ useEffect(()=>{axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=4e4
 //   console.log(props.Movies)
   return (
     <div>
+      <h1 className='animate-charcter'>POPULAR MOVIE RECOMMENDATIONS</h1>
       <div className='Total'>
 
          {popularMovie?.length
