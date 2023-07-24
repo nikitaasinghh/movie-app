@@ -105,12 +105,12 @@ function App() {
     <div className="Container">
       <div className="Header">
         <div className="AppName" onClick={onClick}>
-          <img className="MovieImage" src="./movie-app/images/redLogo.png" />
+          <img className="MovieImage" src="./images/redLogo.png" />
           NikitaFlix
         </div>
 
         <div className="SearchBox">
-          <img className="SearchIcon" src="./movie-app/images/search-icon.svg"></img>
+          <img className="SearchIcon" src="./images/search-icon.svg"></img>
           <div className="SearchBar">
 
           <input className="SearchInput"
