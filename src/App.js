@@ -110,7 +110,7 @@ function App() {
         </div>
 
         <div className="SearchBox">
-          <img className="SearchIcon" src="./images/search-icon.svg"></img>
+          <img className="SearchIcon" src="https://nikitaasinghh.github.io/movie-app/images/search-icon.svg"></img>
           <div className="SearchBar">
 
           <input className="SearchInput"
